@@ -83,7 +83,7 @@ jobs:
         find dl -size -1024c -exec rm -f {} \;
 
     - name: sed netgear-r8000
-      id: sed r8000
+      id: sedr8000
       run: |
         cd openwrt
         sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += netgear-r8000|TARGET_DEVICES += netgear-r8000|' target/linux/bcm53xx/image/Makefile
