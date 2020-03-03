@@ -60,6 +60,9 @@ jobs:
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
+      
+    - name: netgear-r8000
+      run: sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += netgear-r8000|TARGET_DEVICES += netgear-r8000|' target/linux/bcm53xx/image/Makefile
 
     - name: Load custom configuration
       run: |
