@@ -82,7 +82,7 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: netgear-r8000
+    - name: sed netgear-r8000
       id: sed r8000
       run: |
         cd openwrt
