@@ -61,6 +61,9 @@ jobs:
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
       
+    - name: sed netgear-r8000
+      run: cd openwrt && sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += netgear-r8000|TARGET_DEVICES += netgear-r8000|' target/linux/bcm53xx/image/Makefile      
+        
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
@@ -82,11 +85,7 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: sed netgear-r8000
-      id: sedr8000
-      run: |
-        cd openwrt
-        sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += netgear-r8000|TARGET_DEVICES += netgear-r8000|' target/linux/bcm53xx/image/Makefile
+
 
     - name: Compile the firmware
       id: compile
